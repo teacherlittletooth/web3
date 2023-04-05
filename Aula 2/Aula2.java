@@ -9,7 +9,7 @@ public class Aula2 {
         
         try {
             System.out.println("Qual o seu nome?");
-            String nome = scan.next();
+            String nome = scan.nextLine();
 
             System.out.println("Qual a sua idade?");
             int idade = scan.nextInt();
