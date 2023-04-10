@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sistema Web</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    
+    <body>
+        <h1>Faça seu pedido</h1>
+        <form action="PedidoServ" method="post">
+            <label for="produto">Produto:</label>
+            <input type="text" name="produto" id="produto" maxlength="30" required><br><br>
+            
+            <label for="preco">Preço:</label>
+            <input type="number" name="preco" id="preco" min="0" step="0.01"><br><br>
+            
+            <label for="qtd">Quantidade:</label>
+            <input type="number" name="qtd" id="qtd" min="0"><br><br>
+            
+            <input type="submit" value="Registrar">
+            <input type="reset" value="Limpar campos">
+        </form>
+    </body>
+</html>
