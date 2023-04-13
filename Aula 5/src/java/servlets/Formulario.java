@@ -16,7 +16,7 @@ public class Formulario extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        //Capturar dados do formulário, verificando se porventura são nulos
+        //Capturar dados do formulário, verificando se porventura estão vazios ou nulos
         String data;
         if(!request.getParameter("data").isEmpty()) {
              data = request.getParameter("data");
