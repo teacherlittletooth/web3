@@ -2,11 +2,12 @@ package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 
 @WebServlet(name = "Formulario", urlPatterns = {"/Formulario"})
 public class Formulario extends HttpServlet {
@@ -15,22 +16,43 @@ public class Formulario extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        //Recebendo parâmetros do formulário
-        String data = request.getParameter("data");
-        String idade = request.getParameter("idade");
-        String descricao = request.getParameter("descricao");
-        String turnos = ""; //Variável para receber os turnos
-        
-        //Validação: só irá criar o array "turno[]" se alguma caixa for marcada
-        if(request.getParameterValues("turno[]") != null) {
-            //Capturando parâmetro do tipo array (lista)
-            String turno[] = request.getParameterValues("turno[]");
-            
-            //Varrendo lista e jogando dados para a variável turnos
-            for(int i=0; i < turno.length; i++) {
-                turnos += turno[i] + "<br>";
-            }
+        //Capturar dados do formulário, verificando se porventura são nulos
+        String data;
+        if(!request.getParameter("data").isEmpty()) {
+             data = request.getParameter("data");
+        } else {
+            data = "Data não enviada";
         }
+        
+        String idade;
+        if(!request.getParameter("idade").isEmpty()) {
+             idade = request.getParameter("idade");
+        } else {
+            idade = "Idade não enviada";
+        }
+        
+        String descricao;
+        if(!request.getParameter("descricao").isEmpty()) {
+             descricao = request.getParameter("descricao");
+        } else {
+            descricao = "Descrição não enviada";
+        }
+        
+        String interesses = "";
+        String interesse[];
+        if(request.getParameterValues("interesse") != null) {
+             interesse = request.getParameterValues("interesse");
+             //Com a lista "interesse" preenchida, agora vamos varrê-la
+             //e jogar cada valor desta na String interesses.
+             for(int i=0; i < interesse.length; i++) {
+                 interesses += "- " + interesse[i] + "<br>";
+             }
+        } else {
+            interesses = "Nenhum interesse";
+        }
+        
+        
+        
         
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
@@ -38,11 +60,12 @@ public class Formulario extends HttpServlet {
             out.println("<html>");
             out.println("<head>");
             out.println("<title>Formulário</title>");            
+            out.println("<link rel='stylesheet' href='css/style.css'>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>"+ data +"</h1>");
             out.println("<h1>"+ idade +"</h1>");
-            out.println("<h1>"+ turnos +"</h1>");
+            out.println("<h1>"+ interesses +"</h1>");
             out.println("<h1>"+ descricao +"</h1>");
             out.println("</body>");
             out.println("</html>");
@@ -66,7 +89,7 @@ public class Formulario extends HttpServlet {
     
     @Override
     public String getServletInfo() {
-        return "Formulário";
+        return "Validações de back-end";
     }
 
 }
