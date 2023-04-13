@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Formulário</title>
+        <title>Formulário 📝</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="css/style.css"/>
@@ -9,39 +9,55 @@
     <body>
         <h1>Questionário</h1>
         <form action="Formulario" method="get">
-            <h4>Data:</h4>
+            <h4>Data do registro</h4>
             <input type="date" name="data">
             
             <h4>Qual a sua faixa etária?</h4>
-            <input type="radio" id="idade_1" name="idade" value="12 a 18" checked>
-            <label for="idade_1">12 a 18</label>
+            <input type="radio" name="idade" id="idade_1" value="Entre 12 e 18 anos" checked>
+            <label for="idade_1">Entre 12 e 18 anos</label>
+            <br>
+            <input type="radio" name="idade" id="idade_2" value="Entre 19 e 25 anos">
+            <label for="idade_2">Entre 19 e 25 anos</label>
+            <br>
+            <input type="radio" name="idade" id="idade_3" value="Acima de 25 anos">
+            <label for="idade_3">Acima de 25 anos</label>
             
-            <input type="radio" id="idade_2" name="idade" value="19 a 25">
-            <label for="idade_2">19 a 25</label>
+            <h4>Quais são os seus interesses?</h4>
+            <input type="checkbox" name="interesse" id="interesse_1" value="Finanças">
+            <label for="interesse_1">Finanças</label>
+            <br>
             
-            <input type="radio" id="idade_3" name="idade" value="Acima de 25">
-            <label for="idade_3">Acima de 25</label>
+            <input type="checkbox" name="interesse" id="interesse_2" value="Estudos">
+            <label for="interesse_2">Estudos</label>
+            <br>
             
-            <h4>Quais turnos você tem ocupação?</h4>
-            <input type="checkbox" id="turno_1" name="turno[]" value="Manhã">
-            <label for="turno_1">Manhã</label>
+            <input type="checkbox" name="interesse" id="interesse_3" value="Música">
+            <label for="interesse_3">Música</label>
+            <br>
             
-            <input type="checkbox" id="turno_2" name="turno[]" value="Tarde">
-            <label for="turno_2">Tarde</label>
+            <input type="checkbox" name="interesse" id="interesse_4" value="Culinária">
+            <label for="interesse_4">Culinária</label>
+            <br>
             
-            <input type="checkbox" id="turno_3" name="turno[]" value="Noite">
-            <label for="turno_3">Noite</label>
+            <input type="checkbox" name="interesse" id="interesse_5" value="Filmes e séries">
+            <label for="interesse_5">Filmes e séries</label>
+            <br>
             
-            <input type="checkbox" id="turno_4" name="turno[]" value="Madrugada">
-            <label for="turno_4">Madrugada</label>
+            <input type="checkbox" name="interesse" id="interesse_6" value="Jogos">
+            <label for="interesse_6">Jogos</label>
+            <br>
             
-            <h4>Fale sobre você:</h4>
-            <textarea id="txt" name="descricao" cols="50" rows="5" placeholder="Sua descrição aqui..."></textarea>
+            <input type="checkbox" name="interesse" id="interesse_7" value="Esportes">
+            <label for="interesse_7">Esportes</label>
+            <br>
+            
+            <h4>Fale sobre você</h4>
+            <textarea name="descricao" placeholder="Sua descrição aqui..." cols="40" rows="5"></textarea>
             
             <br><hr>
-            <input type="submit" value="Responder">
-            <input type="reset" value="Limpar dados">
+            <input type="submit" value="Enviar informações">
+            <input type="reset" value="Limpar campos">
+            
         </form>
-        
     </body>
 </html>
