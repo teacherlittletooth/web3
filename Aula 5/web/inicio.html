@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Formulário 📄</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/style.css"/>
+    </head>
+    <body>
+        <h1>Questionário</h1>
+        <form action="Form" method="post">
+            <h4>Data do registro</h4>
+            <input type="date" name="data">
+            
+            <h4>Qual a sua faixa etária?</h4>
+            <input type="radio" name="idade" id="idade_1" value="Entre 12 e 18 anos" checked>
+            <label for="idade_1">Entre 12 e 18 anos</label>
+            
+            <input type="radio" name="idade" id="idade_2" value="Entre 19 e 25 anos">
+            <label for="idade_2">Entre 19 e 25 anos</label>
+            
+            <input type="radio" name="idade" id="idade_3" value="Acima de 25 anos">
+            <label for="idade_3">Acima de 25 anos</label>
+            
+            <h4>Em quais períodos você tem ocupação?</h4>
+            <input type="checkbox" name="turno[]" id="turno_1" value="Manhã">
+            <label for="turno_1">Manhã</label>
+            
+            <input type="checkbox" name="turno[]" id="turno_2" value="Tarde">
+            <label for="turno_2">Tarde</label>
+            
+            <input type="checkbox" name="turno[]" id="turno_3" value="Noite">
+            <label for="turno_3">Noite</label>
+            
+            <input type="checkbox" name="turno[]" id="turno_4" value="Madrugada">
+            <label for="turno_4">Madrugada</label>
+            
+            <h4>Fale sobre você</h4>
+            <textarea name="descricao" cols="50" rows="5" placeholder="Sua descrição aqui..."></textarea>
+            
+            <br><hr>
+            <input type="submit" value="Responder">
+            <input type="reset" value="Limpar campos">
+        </form>
+        
+    </body>
+</html>
