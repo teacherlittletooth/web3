@@ -1,47 +1,41 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Formulário</title>
+        <title>Formulário 📄</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="css/style.css"/>
     </head>
-    <body>
-        <h1>Questionário</h1>
-        <form action="Formulario" method="get">
-            <h4>Data:</h4>
-            <input type="date" name="data">
+    <body>        
+        <h1>::: LOGIN :::</h1>
+        <form action="ValidaLogin" method="post">
             
-            <h4>Qual a sua faixa etária?</h4>
-            <input type="radio" id="idade_1" name="idade" value="12 a 18" checked>
-            <label for="idade_1">12 a 18</label>
+            <label for="user">Usuário</label>
+            <input type="text" name="user" id="user" placeholder="Digite o nome de usuário...">
             
-            <input type="radio" id="idade_2" name="idade" value="19 a 25">
-            <label for="idade_2">19 a 25</label>
+            <br><br>
             
-            <input type="radio" id="idade_3" name="idade" value="Acima de 25">
-            <label for="idade_3">Acima de 25</label>
-            
-            <h4>Quais turnos você tem ocupação?</h4>
-            <input type="checkbox" id="turno_1" name="turno[]" value="Manhã">
-            <label for="turno_1">Manhã</label>
-            
-            <input type="checkbox" id="turno_2" name="turno[]" value="Tarde">
-            <label for="turno_2">Tarde</label>
-            
-            <input type="checkbox" id="turno_3" name="turno[]" value="Noite">
-            <label for="turno_3">Noite</label>
-            
-            <input type="checkbox" id="turno_4" name="turno[]" value="Madrugada">
-            <label for="turno_4">Madrugada</label>
-            
-            <h4>Fale sobre você:</h4>
-            <textarea id="txt" name="descricao" cols="50" rows="5" placeholder="Sua descrição aqui..."></textarea>
-            
+            <label for="pass">Senha</label>
+            <input type="password" name="pass" id="pass" placeholder="Digite a senha...">
+           
             <br><hr>
             <input type="submit" value="Responder">
-            <input type="reset" value="Limpar dados">
+            <input type="reset" value="Limpar campos">
         </form>
+        
+        <script>
+            var olho = document.getElementById("pass");
+            
+            olho.addEventListener("mouseover", function(){
+                //alert("Passou o mouse sobre o campo!");
+                olho.type = "text";
+            });
+            
+            olho.addEventListener("mouseleave", function(){
+                //alert("Passou o mouse sobre o campo!");
+                olho.type = "password";
+            });
+        </script>
         
     </body>
 </html>
