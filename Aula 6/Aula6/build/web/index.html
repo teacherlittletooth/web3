@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Login</title>
+        <link rel="stylesheet" href="css/style.css"/>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        
+        <form action="ValidaLogin" method="post" id="form-login">
+            <img id="logo" src="img/logotipo.webp" alt="Logotipo da empresa" height="150"/>
+            <table>
+                <tr>
+                    <td><label for="user">Usuário</label></td>
+                    <td><input type="text" id="user" name="user" placeholder="Digite o nome de usuário..." required></td>
+                </tr>
+                <tr>
+                    <td><label for="pass">Senha</label></td>
+                    <td><input type="password" id="pass" name="pass" placeholder="Digite a senha..."></td>
+                </tr>
+            </table>
+            
+            <input type="submit" value="Entrar">
+            
+        </form>
+        
+        <script>
+                var logo = document.getElementById("logo");
+                var pass = document.getElementById("pass");
+                
+                logo.addEventListener("mouseover", function(){
+                    //alert("Passou o mouse sobre a imagem!");
+                    pass.type = "text";
+                    pass.style.backgroundColor = "red";
+                    pass.style.color = "white";
+                });
+                
+                logo.addEventListener("mouseleave", function(){
+                    //alert("Retirou o mouse de sobre a imagem!");
+                    pass.type = "password";
+                    pass.style.backgroundColor = "white";
+                    pass.style.color = "black";
+                });
+           </script>
+        
+    </body>
+</html>

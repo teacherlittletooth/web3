@@ -1,0 +1,30 @@
+input[type="submit"] {
+    width: 200px;
+    margin-top: 30px;
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 10px 0px 10px 0px;
+    border-radius: 5px;
+    font-size: 18pt;
+    cursor: pointer;
+}
+
+input[type="submit"]:active {
+    width: 200px;
+    margin-top: 30px;
+    background-color: rgb(200, 0, 0);
+    color: grey;
+    padding: 10px 0px 10px 0px;
+    border-radius: 5px;
+    font-size: 18pt;
+    cursor: pointer;
+}
+
+#form-login {
+    text-align: center;
+}
+
+table {
+    margin: auto;    
+}
