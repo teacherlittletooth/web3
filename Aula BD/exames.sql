@@ -20,7 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `exames`
 --
-
+CREATE DATABASE exames;
+USE exames;
 -- --------------------------------------------------------
 
 --
