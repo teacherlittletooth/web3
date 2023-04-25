@@ -151,6 +151,47 @@ ALTER TABLE `npc_mapas`
   ADD CONSTRAINT `npc_mapas_ibfk_2` FOREIGN KEY (`cod_mapa`) REFERENCES `mapas` (`cod_mapa`);
 COMMIT;
 
+--
+-- Inserindo dados nas tabelas
+--
+
+INSERT INTO `mapas`(`nome`, `missao`, `clima`)
+VALUES ('SanAndreas','Derrubar Nexus Inimigo','Ensolarado'),
+('Vice City','Explodir Metrô','Chuvoso'),
+('Las Vegas','Trapacear no Cassino','Nublado'),
+('Los Santos','Sequestrar avião','Ventoso');
+
+INSERT INTO `loja`( `nome`, `cod_mapa`)
+VALUES ('Armamento', 1),
+('Padaria', 1),
+('Construção', 1),
+('Pescaria', 2),
+('Aviamentos', 2),
+('Eletrônica', 3),
+('Informática', 4);
+
+INSERT INTO `npc`(`nome`, `elemento`, `dano`)
+VALUES ('George','terra', 2),
+('Peppa', 'terra', 9999),
+('Naruto','ar', 10),
+('Goku','fogo', 8000),
+('Pocoiô','água', 1);
+
+INSERT INTO `npc_mapas`(`cod_npc`, `cod_mapa`)
+VALUES (1,1),
+(1,2),
+(1,3),
+(1,4),
+(2,2),
+(2,3),
+(3,1),
+(3,2),
+(4,1),
+(4,2),
+(4,3),
+(4,4),
+(5,4);
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
