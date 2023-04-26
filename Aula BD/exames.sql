@@ -147,6 +147,31 @@ ALTER TABLE `exames_pacientes`
 --
 ALTER TABLE `telefone`
   ADD CONSTRAINT `telefone_ibfk_1` FOREIGN KEY (`cod_paciente`) REFERENCES `pacientes` (`cod_paciente`);
+
+--
+-- Inserindo registros
+--
+INSERT INTO `exames`(`valor`, `nome`)
+VALUES    (185.25, 'Endoscopia Pulmonar'),
+					(30.50, 'Exame de fezes'),
+					(45.99, 'Triglicerídeos'),
+					(489.60, 'Exame de toque (próstata)'),
+					(145.30, 'Exame do exame');
+
+INSERT INTO `pacientes`(`nome`, `cpf`, `cep`)
+VALUES ('Fausto Silva','111.111.111-11','99999-999'),
+('Luciano Hulk','222.222.222-22','88888-888'),
+('Silvio Santos','333.333.333-333','77777-777'),
+('Fausto Silva','444.444.444-44','99999-999');
+
+INSERT INTO `telefone`(`telefone`, `cod_paciente`)
+VALUES ('(99)999999999', 1),
+('(88)88888888', 2),
+('(77)77777777', 2),
+('(66)66666666', 3),
+('(55)55555555', 4),
+('(44)44444444', 4);
+
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
