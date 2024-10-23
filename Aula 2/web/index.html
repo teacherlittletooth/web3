@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Vendas </title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1>Preencha o pedido:</h1>
+        
+        <form action="venda" method="get">
+            <label for="produto"> Produto: </label>
+            <select name="produto" id="produto" required>
+                <option value=""> Selecione... </option>
+                <option value="Bola de Futebol"> Bola de Futebol </option>
+                <option value="Bola de Basquete"> Bola de Basquete </option>
+                <option value="Bola de Vôlei"> Bola de Vôlei </option>
+                <option value="Bola de Tênis"> Bola de Tênis </option>
+                <option value="Meia soquete"> Meia soquete </option>
+                <option value="Halter 5kg"> Halter 5kg </option>
+                <option value="Anilha 20kg"> Anilha 20kg </option>
+            </select>
+            
+            <br><br>
+            
+            <label for="preco"> Preço: </label>
+            <input type="number" min="0" step="0.01" id="preco" name="preco">
+
+            <br><br>
+            
+            <label for="qtd"> Quantidade: </label>
+            <input type="number" min="1" id="qtd" name="qtd">
+            
+            <br><br><hr>
+            
+            <input type="submit" value="Registrar ✅">
+            
+        </form>
+    </body>
+</html>
