@@ -10,3 +10,6 @@
 
 ### Aula 4
 - Trabalhando com sessão, criando, destruindo e habilitando ou inibindo acesso à páginas
+
+### paginas_projeto
+- Códigos fonte das páginas desenvolvidas em aula para exemplos de como fazer para o projeto da disciplina
