@@ -8,52 +8,141 @@
         <link rel="icon" href="img/logo.png"/>
     </head>
     <body>
-        
+
         <main class="text-center mt-4 container col-sm-10 col-md-6">
             <h1> Cadastro </h1>
-        
-            <form action="#" method="post">
-                
+
+            <form action="#" method="post" class="validar" novalidate >
+
                 <div class="form-floating mt-3">
-                    <input type="text" id="nome" name="nome" class="form-control" placeholder="Nome completo">
+                    <input type="text" id="nome" name="nome" class="form-control" placeholder="Nome completo" required minlength="6" >
                     <label for="nome"> Nome completo </label>
-                </div>
                 
+                    <small class="invalid-feedback text-start">
+                        O nome precisa conter no mínimo 6 caracteres.
+                    </small>
+                </div>
+
                 <div class="form-floating mt-3">
-                    <input type="email" id="email" name="email" class="form-control" placeholder="exemplo@seuemail.com">
+                    <input type="email" id="email" name="email" class="form-control" placeholder="exemplo@seuemail.com" required >
                     <label for="email"> Email </label>
-                </div>
                 
+                    <small class="invalid-feedback text-start">
+                        O email precisa ter '@' e um domínio (exemplo@email.com).
+                    </small>
+                </div>
+
                 <div class="form-floating mt-3">
-                    <input type="date" id="nasc" name="nasc" class="form-control">
+                    <input type="date" id="nasc" name="nasc" class="form-control" required >
                     <label for="nasc"> Data de nascimento </label>
-                </div>
                 
+                    <small class="invalid-feedback text-start">
+                        O usuário precisa ter idade maior do que 12 anos.
+                    </small>
+                </div>
+
                 <div class="form-floating mt-3">
-                    <input type="password" id="senha" name="senha" class="form-control" placeholder="Senha">
+                    <input type="password" id="senha" name="senha" class="form-control" placeholder="Senha" required minlength="6" pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[^\w\s]).{6,}$" onkeyup="validarSenha()" >
                     <label for="senha"> Senha </label>
-                </div>
                 
+                    <div class="invalid-feedback mt-2 text-start">
+                        A senha precisa ter:
+                        <ul>
+                            <li id="minimo"> No mínimo 6 caracteres </li>
+                            <li id="maiuscula"> Letra MAIÚSCULA </li>
+                            <li id="especial"> Caracter especial </li>
+                            <li id="numero"> Número </li>
+                        </ul>
+                    </div>
+                    
+                    <small class="valid-feedback text-start">
+                        Senha OK!
+                    </small>
+                </div>
+
                 <div class="form-floating mt-3">
-                    <input type="password" id="confere-senha" name="confere-senha" class="form-control" placeholder="Confirmação da senha">
+                    <input type="password" id="confere-senha" name="confere-senha" class="form-control" placeholder="Confirmação da senha" required minlength="6" onkeyup="validarSenha()" >
                     <label for="confere-senha"> Confirmação da senha </label>
-                </div>
                 
+                    <small class="invalid-feedback text-start">
+                        As senhas não coincidem!
+                    </small>
+                </div>
+
                 <div class="form-check form-switch mt-3 text-start">
                     <input type="checkbox" id="noticias" name="noticias" value="sim" class="form-check-input">
                     <label for="noticias" class="form-check-label"> Deseja receber nossa newsletter? </label>
                 </div>
-                
+
                 <hr>
-                
+
                 <div class="d-grid mt-4">
                     <input type="submit" value="Cadastrar" class="btn btn-primary">
                     <input type="reset" value="Limpar campos" class="btn btn-light mt-3">
                 </div>
-                
+
             </form>
-        
+
         </main>
-        
+
+
+        <script src="js/bootstrap.min.js"></script>
+
+        <script>
+            const campoData = document.getElementById("nasc");
+            const senha = document.getElementById("senha");
+            const confSenha = document.getElementById("confere-senha");
+            const minimo = document.getElementById("minimo");
+            const maiuscula = document.getElementById("maiuscula");
+            const especial = document.getElementById("especial");
+            const numero = document.getElementById("numero");
+            
+            function validarSenha() {
+                confSenha.minLength = senha.value.length;
+                
+                ( senha.value.length >= 6 ) ? minimo.style.color = "green" : minimo.style.color = "red";
+                ( /[A-Z]/.test(senha.value) ) ? maiuscula.style.color = "green" : maiuscula.style.color = "red";
+                ( /[^\w\s]/.test(senha.value) ) ? especial.style.color = "green" : especial.style.color = "red";
+                ( /[\d]/.test(senha.value) ) ? numero.style.color = "green" : numero.style.color = "red";
+                
+                if( confSenha.value === senha.value ) {
+                    confSenha.classList.add("is-valid");
+                } else {
+                    confSenha.minLength = 10000;
+                }
+            }
+
+            function pegarData() {
+                let hoje = new Date();
+                let dataFormatada = (hoje.getFullYear() - 12) +
+                        "-" +
+                        (hoje.getMonth() + 1) +
+                        "-" +
+                        (hoje.getDate());
+
+                campoData.max = dataFormatada;
+            }
+
+
+            (() => {
+                'use strict';
+
+                const forms = document.querySelectorAll('.validar');
+
+                Array.from(forms).forEach(form => {
+                    form.addEventListener('submit', event => {
+                        if (!form.checkValidity()) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            })();
+
+            document.addEventListener("load", pegarData());
+        </script>
+
     </body>
 </html>
