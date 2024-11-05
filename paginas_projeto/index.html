@@ -12,16 +12,24 @@
             <h1> Login </h1>
             <img src="img/logo.png" alt="Computador" width="200"/>
             
-            <form action="#" method="post">
+            <form action="#" method="post" class="validar" novalidate >
                 
                 <div class="form-floating mt-3">
-                    <input type="email" id="email" name="email" class="form-control" placeholder="exemplo@seuemail.com">
+                    <input type="email" id="email" name="email" class="form-control" placeholder="exemplo@seuemail.com" required >
                     <label for="email"> Email </label>
+                    
+                    <small class="invalid-feedback text-start">
+                        Insira o email cadastrado.
+                    </small>
                 </div>
                 
                 <div class="form-floating mt-3">
-                    <input type="password" id="senha" name="senha" class="form-control" placeholder="Senha">
+                    <input type="password" id="senha" name="senha" class="form-control" placeholder="Senha" required minlength="6" >
                     <label for="senha"> Senha </label>
+                    
+                    <small class="invalid-feedback text-start">
+                        Insira a senha cadastrada.
+                    </small>
                 </div>
                 
                 <div class="d-grid mt-4">
@@ -32,5 +40,9 @@
             </form>
             
         </main>
+        
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/init-validation.js"></script>
+        
     </body>
 </html>
