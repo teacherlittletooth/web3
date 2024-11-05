@@ -116,33 +116,21 @@
                 let hoje = new Date();
                 let dataFormatada = (hoje.getFullYear() - 12) +
                         "-" +
-                        (hoje.getMonth() + 1) +
+                        ( (hoje.getMonth()+1 < 10) ?
+                           "0" + hoje.getMonth()+1 :
+                                 hoje.getMonth()+1 ) +
                         "-" +
-                        (hoje.getDate());
+                        ( (hoje.getDate() < 10) ?
+                           "0" + hoje.getDate() :
+                                 hoje.getDate() );
 
                 campoData.max = dataFormatada;
             }
 
-
-            (() => {
-                'use strict';
-
-                const forms = document.querySelectorAll('.validar');
-
-                Array.from(forms).forEach(form => {
-                    form.addEventListener('submit', event => {
-                        if (!form.checkValidity()) {
-                            event.preventDefault();
-                            event.stopPropagation();
-                        }
-
-                        form.classList.add('was-validated');
-                    }, false);
-                });
-            })();
-
             document.addEventListener("load", pegarData());
         </script>
+        
+        <script src="js/init-validation.js"></script>
 
     </body>
 </html>
