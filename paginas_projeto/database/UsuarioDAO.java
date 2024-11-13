@@ -25,8 +25,37 @@ public class UsuarioDAO {
        
        ResultSet res = prep.executeQuery();
        
-       //Continua...
+       while( res.next() ) {
+           Usuario user = new Usuario();
+           
+           user.setId( res.getInt("id") );
+           user.setNome(res.getString("nome") );
+           user.setEmail(res.getString("email") );
+           user.setNascimento(res.getString("nascimento") );
+           user.setSenha(res.getString("senha") );
+           user.setNoticias( res.getInt("noticias") == 1 );
+           
+           list.add(user);
+       }
        
+       prep.close();
        return list;
+    }
+    
+    
+    public void setNewUser(Usuario user) throws SQLException {
+        String query = "insert into usuarios(nome, email, nascimento, senha, noticias) "
+                     + "values(?, ?, ?, sha1(?), ?)";
+        
+        PreparedStatement prep = conn.prepareStatement(query);
+        
+        prep.setString(1, user.getNome() );
+        prep.setString(2, user.getEmail() );
+        prep.setString(3, user.getNascimento() );
+        prep.setString(4, user.getSenha() );
+        prep.setInt(5, user.isNoticias() ? 1 : 0 );
+        
+        prep.execute();
+        prep.close();
     }
 }
