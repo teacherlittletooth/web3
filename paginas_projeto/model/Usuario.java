@@ -11,8 +11,7 @@ public class Usuario {
     
     public Usuario(){}
 
-    public Usuario(int id, String nome, String email, String nascimento, String senha, boolean noticias) {
-        this.id = id;
+    public Usuario(String nome, String email, String nascimento, String senha, boolean noticias) {
         this.nome = nome;
         this.email = email;
         this.nascimento = nascimento;
