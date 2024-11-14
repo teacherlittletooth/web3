@@ -1,5 +1,9 @@
 package model;
 
+import database.UsuarioDAO;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 
 public class Usuario {
     private int id;
@@ -10,6 +14,11 @@ public class Usuario {
     private boolean noticias;
     
     public Usuario(){}
+
+    public Usuario(String email, String senha) {
+        this.email = email;
+        this.senha = senha;
+    }
 
     public Usuario(String nome, String email, String nascimento, String senha, boolean noticias) {
         this.nome = nome;
@@ -67,6 +76,22 @@ public class Usuario {
         this.noticias = noticias;
     }
 
+    public boolean login() throws SQLException, ClassNotFoundException {
+        boolean key = false;
+        
+        UsuarioDAO dao = new UsuarioDAO();
+        ArrayList<Usuario> list = dao.getAllUsers();
+        
+        for(Usuario u : list) {
+            if(u.getEmail().equals(this.email)) {
+                if(u.getSenha().equals(this.senha)) {
+                    key = true;
+                }
+            }
+        }
+        return key;
+    }
+    
     @Override
     public String toString() {
         return "Usuario{" + "id=" + id + ", nome=" + nome + ", email=" + email + ", nascimento=" + nascimento + ", senha=" + senha + ", noticias=" + noticias + '}';
