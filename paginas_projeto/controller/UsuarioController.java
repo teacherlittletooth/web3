@@ -1,5 +1,6 @@
 package controller;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import java.sql.SQLException;
 import database.UsuarioDAO;
 import java.io.IOException;
@@ -9,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.Usuario;
 
 @WebServlet(name = "UsuarioController", urlPatterns = {"/usuario-controller"})
@@ -19,6 +21,27 @@ public class UsuarioController extends HttpServlet {
 
         String pagina = request.getParameter("pagina");
 
+        if (pagina.equals("login")) {
+            String email = request.getParameter("email");
+            String senha = request.getParameter("senha");
+            
+            Usuario u = new Usuario(email, DigestUtils.sha1Hex(senha));
+            
+            try {
+                if( u.login() ) {
+                    HttpSession session = request.getSession();
+                    session.setAttribute("autenticado", true);
+                    
+                    request.getRequestDispatcher("inicio.jsp")
+                            .forward(request, response);
+                } else {
+                    response.sendRedirect("index.html");
+                }
+            } catch(SQLException | ClassNotFoundException erro) {
+                System.err.println( erro );
+            }
+        }
+        
         if (pagina.equals("cadastro")) {
             String nome = request.getParameter("nome");
             String email = request.getParameter("email");
