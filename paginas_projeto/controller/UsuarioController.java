@@ -11,31 +11,32 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Usuario;
 
-
 @WebServlet(name = "UsuarioController", urlPatterns = {"/usuario-controller"})
 public class UsuarioController extends HttpServlet {
 
-    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        String nome = request.getParameter("nome");
-        String email = request.getParameter("email");
-        String nascimento = request.getParameter("nasc");
-        String senha = request.getParameter("senha");
-        boolean noticias = request.getParameter("noticias") != null;
-        
-        Usuario u = new Usuario(nome, email, nascimento, senha, noticias);
-        
-        try {
-            UsuarioDAO uDao = new UsuarioDAO();
-            uDao.setNewUser(u);
-            
-            response.sendRedirect("index.html");
-        } catch( SQLException | ClassNotFoundException erro ) {
-            System.err.println( erro );
+
+        String pagina = request.getParameter("pagina");
+
+        if (pagina.equals("cadastro")) {
+            String nome = request.getParameter("nome");
+            String email = request.getParameter("email");
+            String nascimento = request.getParameter("nasc");
+            String senha = request.getParameter("senha");
+            boolean noticias = request.getParameter("noticias") != null;
+
+            Usuario u = new Usuario(nome, email, nascimento, senha, noticias);
+
+            try {
+                UsuarioDAO uDao = new UsuarioDAO();
+                uDao.setNewUser(u);
+
+                response.sendRedirect("index.html");
+            } catch (SQLException | ClassNotFoundException erro) {
+                System.err.println(erro);
+            }
         }
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
