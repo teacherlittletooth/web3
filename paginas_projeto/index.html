@@ -12,7 +12,9 @@
             <h1> Login </h1>
             <img src="img/logo.png" alt="Computador" width="200"/>
             
-            <form action="#" method="post" class="validar" novalidate >
+            <form action="usuario-controller" method="post" class="validar" novalidate >
+                
+                <input type="hidden" name="pagina" value="login">
                 
                 <div class="form-floating mt-3">
                     <input type="email" id="email" name="email" class="form-control" placeholder="exemplo@seuemail.com" required >
