@@ -18,7 +18,8 @@ public class UsuarioController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        request.setCharacterEncoding("UTF-8");
+        
         String pagina = request.getParameter("pagina");
 
         if (pagina.equals("login")) {
@@ -32,8 +33,7 @@ public class UsuarioController extends HttpServlet {
                     HttpSession session = request.getSession();
                     session.setAttribute("autenticado", true);
                     
-                    request.getRequestDispatcher("inicio.jsp")
-                            .forward(request, response);
+                    response.sendRedirect("inicio.jsp");
                 } else {
                     response.sendRedirect("index.html");
                 }
