@@ -60,6 +60,19 @@ public class UsuarioController extends HttpServlet {
                 System.err.println(erro);
             }
         }
+        
+        
+        if(pagina.equals("excluir")) {
+            int id = Integer.parseInt( request.getParameter("id") );
+            
+            try {
+                UsuarioDAO dao = new UsuarioDAO();
+                dao.deleteUser(id);
+                response.sendRedirect("inicio.jsp");
+            } catch(ClassNotFoundException | SQLException erro) {
+                System.err.println( erro );
+            }
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -58,4 +58,14 @@ public class UsuarioDAO {
         prep.execute();
         prep.close();
     }
+    
+    
+    public void deleteUser(int id) throws SQLException {
+        String query = "delete from usuarios where id = " + id ;
+        
+        PreparedStatement prep = conn.prepareStatement(query);
+        
+        prep.execute();
+        prep.close();
+    }
 }
