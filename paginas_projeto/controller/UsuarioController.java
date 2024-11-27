@@ -73,6 +73,40 @@ public class UsuarioController extends HttpServlet {
                 System.err.println( erro );
             }
         }
+        
+        
+        if(pagina.equals("editar")) {
+            int id = Integer.parseInt( request.getParameter("id") );
+            
+            try {
+                UsuarioDAO dao = new UsuarioDAO();
+                Usuario u = dao.getOneUser(id);
+                request.setAttribute("user", u);
+                request.getRequestDispatcher("editar.jsp").forward(request, response);
+            } catch(ClassNotFoundException | SQLException erro) {
+                System.err.println( erro );
+            }
+        }
+        
+        
+        if (pagina.equals("atualizar")) {
+            int id = Integer.parseInt( request.getParameter("id") );
+            String nome = request.getParameter("nome");
+            String email = request.getParameter("email");
+            String nascimento = request.getParameter("nasc");
+            boolean noticias = request.getParameter("noticias") != null;
+
+            Usuario u = new Usuario(id, nome, email, nascimento, noticias);
+
+            try {
+                UsuarioDAO uDao = new UsuarioDAO();
+                uDao.updateUser(u);
+
+                response.sendRedirect("inicio.jsp");
+            } catch (SQLException | ClassNotFoundException erro) {
+                System.err.println(erro);
+            }
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
