@@ -7,10 +7,12 @@ import java.sql.SQLException;
 public class Conexao {
     
     public static Connection getConn() throws ClassNotFoundException, SQLException {
+        Connection conn;
+        
         Class.forName("com.mysql.cj.jdbc.Driver");
         
-        Connection conn = DriverManager.getConnection(
-                "jdbc:mysql://localhost:3307/sistema_n" ,
+        conn = DriverManager.getConnection(
+                "jdbc:mysql://localhost:3307/sistema_t" ,
                 "root" ,
                 "root"
         );
