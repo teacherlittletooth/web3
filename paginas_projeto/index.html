@@ -5,19 +5,19 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="css/bootstrap.min.css"/>
-        <link rel="icon" href="img/logo.png"/>
+        <link rel="icon" href="img/logotipo.png"/>
     </head>
     <body>
-        <main class="text-center mt-4 container col-sm-10 col-md-6">
+        <div class="mt-4 text-center container col-sm-10 col-md-6">
             <h1> Login </h1>
-            <img src="img/logo.png" alt="Computador" width="200"/>
-            
+            <img src="img/logotipo.png" alt="Logotipo" width="200"/>
+        
             <form action="usuario-controller" method="post" class="validar" novalidate >
                 
                 <input type="hidden" name="pagina" value="login">
                 
-                <div class="form-floating mt-3">
-                    <input type="email" id="email" name="email" class="form-control" placeholder="exemplo@seuemail.com" required >
+                <div class="form-floating mt-3 mb-3">
+                    <input type="email" id="email" name="email" class="form-control" placeholder="email@exemplo.com" required >
                     <label for="email"> Email </label>
                     
                     <small class="invalid-feedback text-start">
@@ -25,7 +25,7 @@
                     </small>
                 </div>
                 
-                <div class="form-floating mt-3">
+                <div class="form-floating">
                     <input type="password" id="senha" name="senha" class="form-control" placeholder="Senha" required minlength="6" >
                     <label for="senha"> Senha </label>
                     
@@ -35,13 +35,13 @@
                 </div>
                 
                 <div class="d-grid mt-4">
-                    <input type="submit" value="Entrar" class="btn btn-primary">
+                    <input type="submit" value="Entrar" class="btn btn-success">
                     <a href="cadastro.html" class="btn btn-link mt-3"> Cadastre-se </a>
                 </div>
                 
             </form>
             
-        </main>
+        </div>
         
         <script src="js/bootstrap.min.js"></script>
         <script src="js/init-validation.js"></script>
