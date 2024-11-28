@@ -1,70 +1,38 @@
 package controller;
 
-import org.apache.commons.codec.digest.DigestUtils;
-import database.UsuarioDAO;
+import database.TarefaDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import model.Tarefa;
 import model.Usuario;
 
-@WebServlet(name = "UsuarioController", urlPatterns = {"/usuario-controller"})
-public class UsuarioController extends HttpServlet {
+@WebServlet(name = "TarefaController", urlPatterns = {"/tarefa-controller"})
+public class TarefaController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         
         String pagina = request.getParameter("pagina");
-        
-        if (pagina.equals("login")) {
-            String email = request.getParameter("email");
-            String senha = request.getParameter("senha");
-            
-            Usuario u = new Usuario( email, DigestUtils.sha1Hex(senha) );
-            
-            try {
-               if( u.login() ) {
-                   UsuarioDAO dao = new UsuarioDAO();
-                   Usuario userLogged = dao.getOneUserByEmail(email);
-                   
-                   HttpSession session = request.getSession();
-                   session.setAttribute("autenticado", true);
-                   session.setAttribute("userLogged", userLogged);
-                   
-                   if(email.equals("admin@admin")) {
-                       response.sendRedirect("inicio.jsp");
-                   } else {
-                       response.sendRedirect("tarefas.jsp");
-                   }
-                   
-               } else {
-                   response.sendRedirect("index.html");
-               }
-            } catch(SQLException | ClassNotFoundException erro) {
-                System.err.println( erro );
-            }
-        }
-        
+        Usuario user = (Usuario)request.getSession().getAttribute("userLogged");
+                
         if (pagina.equals("cadastro")) {
-            String nome = request.getParameter("nome");
-            String email = request.getParameter("email");
-            String nascimento = request.getParameter("nasc");
-            String senha = request.getParameter("senha");
-            boolean noticias = request.getParameter("noticias") != null;
-
-            Usuario u = new Usuario(nome, email, nascimento, senha, noticias);
+            String titulo = request.getParameter("titulo");
+            String descricao = request.getParameter("descricao");
+            String statusTarefa = request.getParameter("status");
+            
+            Tarefa t = new Tarefa(titulo, descricao, statusTarefa, user);
 
             try {
-                UsuarioDAO uDao = new UsuarioDAO();
-                uDao.setNewUser(u);
+                TarefaDAO tDao = new TarefaDAO();
+                tDao.setNewTask(t, user.getId());
 
-                response.sendRedirect("index.html");
+                response.sendRedirect("tarefas.jsp");
 
             } catch (SQLException | ClassNotFoundException erro) {
                 System.err.println(erro);
@@ -76,10 +44,10 @@ public class UsuarioController extends HttpServlet {
             int id = Integer.parseInt( request.getParameter("id") );
             
             try {
-                UsuarioDAO dao = new UsuarioDAO();
-                dao.deleteUser(id);
+                TarefaDAO dao = new TarefaDAO();
+                dao.deleteTask(id);
                 
-                response.sendRedirect("inicio.jsp");
+                response.sendRedirect("tarefas.jsp");
             } catch(ClassNotFoundException | SQLException erro) {
                 System.err.println( erro );
             }
@@ -90,11 +58,11 @@ public class UsuarioController extends HttpServlet {
             int id = Integer.parseInt( request.getParameter("id") );
             
             try {
-                UsuarioDAO dao = new UsuarioDAO();
-                Usuario u = dao.getOneUser(id);
+                TarefaDAO dao = new TarefaDAO();
+                Tarefa t = dao.getOneTask(id);
                 
-                request.setAttribute("user", u);
-                request.getRequestDispatcher("editar.jsp").forward(request, response);
+                request.setAttribute("task", t);
+                request.getRequestDispatcher("edita-tarefa.jsp").forward(request, response);
             } catch(ClassNotFoundException | SQLException erro) {
                 System.err.println( erro );
             }
@@ -103,18 +71,17 @@ public class UsuarioController extends HttpServlet {
     
         if (pagina.equals("atualizar")) {
             int id = Integer.parseInt( request.getParameter("id") );
-            String nome = request.getParameter("nome");
-            String email = request.getParameter("email");
-            String nascimento = request.getParameter("nasc");
-            boolean noticias = request.getParameter("noticias") != null;
+            String titulo = request.getParameter("titulo");
+            String descricao = request.getParameter("descricao");
+            String statusTarefa = request.getParameter("status");
 
-            Usuario u = new Usuario(id, nome, email, nascimento, noticias);
+            Tarefa t = new Tarefa(id, titulo, descricao, statusTarefa);
 
             try {
-                UsuarioDAO uDao = new UsuarioDAO();
-                uDao.updateUser(u);
+                TarefaDAO tDao = new TarefaDAO();
+                tDao.updateTask(t);
 
-                response.sendRedirect("inicio.jsp");
+                response.sendRedirect("tarefas.jsp");
 
             } catch (SQLException | ClassNotFoundException erro) {
                 System.err.println(erro);
