@@ -12,7 +12,7 @@ public class Conexao {
         Class.forName("com.mysql.cj.jdbc.Driver");
         
         conn = DriverManager.getConnection(
-                "jdbc:mysql://localhost:3307/sistema_t" ,
+                "jdbc:mysql://localhost:3307/sistema_java" ,
                 "root" ,
                 "root"
         );
